@@ -9,7 +9,7 @@ cursor = connection.cursor()
 
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS users(
-full_name TEXT NOT NULL,
+username TEXT NOT NULL,
 login TEXT NOT NULL,
 password VARCHAR NOT NULL
 )

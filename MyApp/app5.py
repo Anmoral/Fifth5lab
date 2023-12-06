@@ -39,7 +39,7 @@ def login():
         password = request.form.get('password')
         cursor.execute("SELECT * FROM service.users WHERE login=%s AND password=%s", (str(username), str(password)))
         records = list(cursor.fetchall())
-        return render_template('account.html', full_name=records[0][1])
+        return render_template('account.html', username=records[0][1])
     elif request.form.get("registration"):
         return redirect("/registration/")
     return render_template('login.html')
@@ -50,7 +50,7 @@ def registration():
         name = request.form.get('name')
         login = request.form.get('login')
         password = request.form.get('password')
-        cursor.execute('INSERT INTO service.users (full_name, login, password) VALUES (%s, %s, %s);', (str(name), str(login), str(password)))
+        cursor.execute('INSERT INTO service.users (username, login, password) VALUES (%s, %s, %s);', (str(name), str(login), str(password)))
         connection.commit()
         return redirect('/login/')
         return render_template('registration.html')
